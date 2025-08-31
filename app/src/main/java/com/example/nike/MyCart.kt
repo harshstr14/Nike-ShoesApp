@@ -115,7 +115,7 @@ class MyCart : AppCompatActivity() {
                 intent.putExtra("totalCost",totalCost)
                 startActivity(intent)
             } else {
-                Toast.makeText(this, "Cart is Empty.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cart is Empty", Toast.LENGTH_SHORT).show()
             }
         }
     }
