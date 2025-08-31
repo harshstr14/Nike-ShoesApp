@@ -107,12 +107,16 @@ class MyCart : AppCompatActivity() {
         }
 
         binding.checkOutBtn.setOnClickListener {
-            val intent = Intent(this, CheckOut::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            intent.putExtra("subTotal",subTotal)
-            intent.putExtra("shoppingFee",shoppingFee)
-            intent.putExtra("totalCost",totalCost)
-            startActivity(intent)
+            if (myCartList.isNotEmpty()) {
+                val intent = Intent(this, CheckOut::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                intent.putExtra("subTotal",subTotal)
+                intent.putExtra("shoppingFee",shoppingFee)
+                intent.putExtra("totalCost",totalCost)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Cart is Empty.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private fun updateTotalCost() {
