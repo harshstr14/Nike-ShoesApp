@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#F8F9FA"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Details">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NIKE"
+        android:textSize="130sp"
+        android:fontFamily="@font/merriweathersans_bold"
+        android:textStyle="bold|italic"
+        android:textColor="#1400001A"
+        android:rotation="90"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shoeNameTittle" />
+
+    <TextView
+        android:id="@+id/shoeNameTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nike Dunk Low"
+        android:textSize="20sp"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:textColor="#1A2530"
+        app:layout_constraintBottom_toBottomOf="@+id/backArrowImage"
+        app:layout_constraintEnd_toStartOf="@+id/cartImage"
+        app:layout_constraintStart_toEndOf="@+id/backArrowImage"
+        app:layout_constraintTop_toTopOf="@+id/backArrowImage" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/backArrowImage"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/txtinputlayout_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/backArrowbtn"
+        app:layout_constraintEnd_toEndOf="@+id/backArrowbtn"
+        app:layout_constraintStart_toStartOf="@+id/backArrowbtn"
+        app:layout_constraintTop_toTopOf="@+id/backArrowbtn"/>
+
+    <ImageButton
+        android:id="@+id/backArrowbtn"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="36dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/outline_arrow_back_ios_new_24"
+        app:layout_constraintBottom_toBottomOf="@+id/cartImage"
+        app:layout_constraintTop_toTopOf="@+id/cartImage"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cartBackground"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/txtinputlayout_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/cartImage"
+        app:layout_constraintEnd_toEndOf="@+id/cartImage"
+        app:layout_constraintStart_toStartOf="@+id/cartImage"
+        app:layout_constraintTop_toTopOf="@+id/cartImage" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cartImage"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cart"
+        app:tint="#000000"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/shoeImage"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:rotation="-39"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="-38dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/shoeImageView"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="7.5dp"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="Size"
+        android:textColor="#1A2530"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/backArrowImage"
+        app:layout_constraintTop_toBottomOf="@+id/backArrowImage" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sizeCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="189dp"
+        android:orientation="vertical"
+        android:clipToPadding="false"
+        android:layout_marginTop="-2dp"
+        android:layout_marginStart="12dp"
+        tools:listitem="@layout/item_sizecategory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/size_category_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/addFavourite"
+        app:layout_constraintEnd_toEndOf="@+id/addFavourite"
+        app:layout_constraintStart_toStartOf="@+id/addFavourite"
+        app:layout_constraintTop_toTopOf="@+id/addFavourite" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/addFavourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        app:layout_constraintEnd_toEndOf="@+id/cartImage"
+        app:layout_constraintStart_toStartOf="@+id/cartImage"
+        app:layout_constraintTop_toBottomOf="@+id/cartBackground"
+        app:srcCompat="@drawable/favourite"
+        app:tint="@color/black" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="125dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/sizeCategory">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:id="@+id/shoeNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/merriweathersans_semibold"
+                android:text="Nike Dunk Low"
+                android:textColor="#1A2530"
+                android:textSize="18.5sp" />
+
+            <TextView
+                android:id="@+id/shoeTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweathersans_regular"
+                android:text="Retro"
+                android:textColor="#707B81"
+                android:textSize="15.5sp"
+                android:layout_marginTop="1.5dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shoeImageRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:clipToPadding="false"
+                android:layout_marginVertical="5dp"
+                tools:listitem="@layout/item_shoe_image" />
+
+            <TextView
+                android:id="@+id/shoeDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweathersans_regular"
+                android:text="Created for the hardwood but taken to the streets, the Nike Dunk Low Retro returns with crisp overlays and original team colours. This basketball icon channels '80s vibes with premium leather in the upper that looks good and breaks in even better. Modern footwear technology helps bring the comfort into the 21st century."
+                android:textColor="#707B81"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/merriweathersans_semibold"
+                android:text="Product Details"
+                android:textColor="#1A2530"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/productDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/merriweathersans_regular"
+                android:text="Low-cut collar\nFoam insole\nPerforations on the toe\nColour Shown: White/White/Black\nStyle: DD1391-100\nCountry/Region of Origin: China, Indonesia, Vietnam"
+                android:textColor="#707B81"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottam_bg"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/merriweathersans_regular"
+            android:text="Price"
+            android:textColor="#707B81"
+            android:textSize="16.5sp" />
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/price"
+            android:fontFamily="@font/merriweathersans_semibold"
+            android:text="$ 157.66"
+            android:textColor="#1A2530"
+            android:textSize="17sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addToCartBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="#5B9EE1"
+            android:padding="16dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:text="Add To Cart"
+            android:textColor="#F8F9FA"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

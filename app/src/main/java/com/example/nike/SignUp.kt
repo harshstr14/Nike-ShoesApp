@@ -1,0 +1,106 @@
+package com.example.nike
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
+import com.example.nike.databinding.ActivitySignUpBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
+class SignUp : AppCompatActivity() {
+    private lateinit var binding: ActivitySignUpBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+    private var googleSignInManager: GoogleSignInManager ?= null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(binding.root)
+
+        googleSignInManager = GoogleSignInManager.getInstance(this)
+        googleSignInManager?.setupGoogleSignInOptions()
+
+        binding.googleSignUpBtn.setOnClickListener {
+            googleSignInManager!!.signIn()
+        }
+
+        binding.backArrowImage.setOnClickListener {
+            val intent = Intent(this, SignIn::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+            finish()
+        }
+        binding.backArrowbtn.setOnClickListener {
+            val intent = Intent(this, SignIn::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+            finish()
+        }
+
+       binding.signUpBtn.setOnClickListener {
+           val name = binding.nameEditText.text.toString()
+           val mail = binding.emailEditText.text.toString()
+           val password = binding.passwordEditText.text.toString()
+
+           val pref = getSharedPreferences("Pref_Name",MODE_PRIVATE)
+
+           if (name.isNotEmpty() && mail.isNotEmpty() && password.isNotEmpty()) {
+               auth = FirebaseAuth.getInstance()
+               database = FirebaseDatabase.getInstance().getReference()
+
+               auth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener { task ->
+                   if (task.isSuccessful) {
+                       val userID = auth.currentUser?.uid
+                       val userData = mapOf(
+                           "name" to name,
+                           "mail" to mail,
+                       )
+                       if (userID != null) {
+                           database.child("Users").child(userID).setValue(userData).addOnSuccessListener {
+                               pref.edit { putBoolean("isLoggedIn", true) }
+                               val intent = Intent(this, Home::class.java)
+                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                               startActivity(intent)
+                               finish()
+                           }.addOnFailureListener { e ->
+                               Log.e("FirebaseDB", "Failed to save user data: ${e.message}", e)
+                               Toast.makeText(this, "Could not save user info. Please try again.", Toast.LENGTH_SHORT).show()
+                           }
+                       } else {
+                           Log.e("Auth", "UID is null after successful registration")
+                           Toast.makeText(this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
+                       }
+                   } else {
+                       Log.e("Auth", "Sign-up failed: ${task.exception?.message}", task.exception)
+                       Toast.makeText(this, "Email is already registered or invalid.", Toast.LENGTH_SHORT).show()
+                   }
+               }.addOnFailureListener { e ->
+                   Log.e("Auth", "FirebaseAuth error: ${e.message}", e)
+                   Toast.makeText(this, "Sign-up failed. Please try again.", Toast.LENGTH_SHORT).show()
+               }
+           } else {
+               Toast.makeText(this,"Please Fill the Details", Toast.LENGTH_SHORT).show()
+           }
+       }
+
+        binding.signintxt.setOnClickListener {
+            val intent = Intent(this, SignIn::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GoogleSignInManager.GOOGLE_SIGN_IN) {
+            googleSignInManager?.handleSignInResult(data)
+        }
+    }
+}

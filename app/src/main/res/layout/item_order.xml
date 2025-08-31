@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/size_category_bg"
+    android:paddingVertical="18dp"
+    android:paddingHorizontal="12dp"
+    android:layout_marginVertical="8dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/backArrowImage"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/rectangle_background"
+        app:layout_constraintBottom_toBottomOf="@+id/backArrowbtn"
+        app:layout_constraintEnd_toEndOf="@+id/backArrowbtn"
+        app:layout_constraintStart_toStartOf="@+id/backArrowbtn"
+        app:layout_constraintTop_toTopOf="@+id/backArrowbtn"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/backArrowbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingTop="2dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/box"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#5B9EE1" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="Order ID : "
+        android:textColor="#1A2530"
+        android:textSize="12sp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/dayTextView"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView10" />
+
+    <TextView
+        android:id="@+id/orderIDTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/merriweathersans_regular"
+        android:text="987456"
+        android:textColor="#707B81"
+        android:textSize="12sp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView10"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="18dp"
+        app:tint="#707B81"
+        app:layout_constraintBottom_toBottomOf="@+id/dayTextView"
+        app:layout_constraintStart_toEndOf="@id/backArrowbtn"
+        app:layout_constraintTop_toTopOf="@+id/dayTextView"
+        app:srcCompat="@drawable/calender" />
+
+    <TextView
+        android:id="@+id/dayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="28 Dec 2025"
+        android:textColor="#1A2530"
+        android:textSize="13sp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/amountTextView"
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView10"
+        app:layout_constraintTop_toTopOf="@+id/amountTextView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView11"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="8dp"
+        app:tint="#707B81"
+        app:layout_constraintBottom_toBottomOf="@+id/timeTextView"
+        app:layout_constraintStart_toEndOf="@id/dayTextView"
+        app:layout_constraintTop_toTopOf="@+id/timeTextView"
+        app:srcCompat="@drawable/clock" />
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="02 : 25 pm"
+        android:textColor="#1A2530"
+        android:textSize="13sp"
+        android:layout_marginStart="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dayTextView"
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView11"
+        app:layout_constraintTop_toTopOf="@+id/dayTextView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="4 Items"
+        android:textColor="#707B81"
+        android:textSize="12sp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView10"
+        app:layout_constraintTop_toBottomOf="@+id/dayTextView" />
+
+    <TextView
+        android:id="@+id/amountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="$ 150"
+        android:textColor="#1A2530"
+        android:textSize="13sp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Nike</string>
+    <string name="todo">TODO</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="web_client_id">894193914867-k4kvve2d65fra5vtao2h8fhm6d46764b.apps.googleusercontent.com</string>
+</resources>

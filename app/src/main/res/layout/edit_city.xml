@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editField"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:text="city name"
+            android:textCursorDrawable="@drawable/custom_cursor"
+            android:fontFamily="@font/merriweathersans_regular"
+            android:textColor="#707B81"
+            android:textSize="12.5sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/editBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="22dp"
+            app:srcCompat="@drawable/edit" />
+</LinearLayout>

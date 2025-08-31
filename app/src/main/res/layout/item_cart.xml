@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:background="#F8F9FA">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="87dp"
+        android:layout_height="85dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="#EFEFEF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="105dp"
+            app:srcCompat="@drawable/nike_dunk"
+            android:rotation="-28"
+            android:layout_marginStart="-14dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="-14dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="Nike Dunk Low"
+        android:textColor="#1A2530"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/merriweathersans_regular"
+        android:text="$ 157.66"
+        android:textColor="#1A2530"
+        android:textSize="12.5sp"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/txtinputlayout_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/minusBtn"
+        app:layout_constraintEnd_toEndOf="@+id/minusBtn"
+        app:layout_constraintStart_toStartOf="@+id/minusBtn"
+        app:layout_constraintTop_toTopOf="@+id/minusBtn" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/minusBtn"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:paddingVertical="4dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/todo"
+        android:layout_marginStart="6dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/minus"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/itemQuantities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="17dp"
+        android:fontFamily="@font/merriweathersans_regular"
+        android:text="1"
+        android:textSize="14sp"
+        android:textColor="#1A2530"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatImageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView3"
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView3"
+        app:layout_constraintTop_toTopOf="@+id/appCompatImageView3" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:backgroundTint="#D95B9EE1"
+        android:background="@drawable/txtinputlayout_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/addBtn"
+        app:layout_constraintEnd_toEndOf="@+id/addBtn"
+        app:layout_constraintStart_toStartOf="@+id/addBtn"
+        app:layout_constraintTop_toTopOf="@+id/addBtn" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/addBtn"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@android:color/transparent"
+        app:tint="@color/white"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/outline_add_24"
+        app:layout_constraintBottom_toBottomOf="@+id/minusBtn"
+        app:layout_constraintStart_toEndOf="@+id/itemQuantities"
+        app:layout_constraintTop_toTopOf="@+id/minusBtn" />
+
+    <TextView
+        android:id="@+id/shoeSizeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="Uk 6"
+        android:textAllCaps="true"
+        android:textColor="#1A2530"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+
+    <ImageButton
+        android:id="@+id/removeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/delete"
+        app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView4"
+        app:layout_constraintEnd_toEndOf="@+id/shoeSizeText"
+        app:layout_constraintStart_toStartOf="@+id/shoeSizeText"
+        app:layout_constraintTop_toTopOf="@+id/appCompatImageView4"
+        app:tint="#707B81" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
