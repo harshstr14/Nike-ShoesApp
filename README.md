@@ -56,6 +56,8 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
       
 -   ⚡**Splash Screens :**
     -   Introductory splash screens.
+ 
+## 📸 Screenshots
     
 ## 🛠️ Technology Stack
 
