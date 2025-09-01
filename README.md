@@ -1,4 +1,5 @@
-# 👟 Nike-ShoesApp - An Android application for browsing Nike shoes.
+# 👟 Nike ShoesApp
+An Android application for browsing Nike shoes.
 
 ## 📖 Description
 
