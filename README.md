@@ -1,6 +1,4 @@
-# 👟 Nike-ShoesApp
-
-An Android application for browsing and purchasing Nike shoes.
+# 👟 Nike-ShoesApp - An Android application for browsing Nike shoes.
 
 ## 📖 Description
 
@@ -68,11 +66,11 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
 -   ☁️ **Cloudinary :** For image management and storage.
 -   🖼️ **Picasso :** For image loading and caching.
 -   📦 **AndroidX Libraries :**
-    -   ⚙️AppCompat: For backward compatibility.
-    -   📋RecyclerView: For displaying lists of data.
-    -   📐ConstraintLayout: For creating flexible layouts.
-    -   🎨Material Components: For using Material Design elements.
-    -   🌌EdgeToEdge : For immersive experiences with edge-to-edge content.
+    -   ⚙️ AppCompat: For backward compatibility.
+    -   📋 RecyclerView: For displaying lists of data.
+    -   📐 ConstraintLayout: For creating flexible layouts.
+    -   🎨 Material Components: For using Material Design elements.
+    -   🌌 EdgeToEdge : For immersive experiences with edge-to-edge content.
 -   🛠️ **Gradle :** For dependency management and building the application.
 
 ## 📋 Prerequisites
