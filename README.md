@@ -61,6 +61,8 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
 
 <p align="left">
   <img src="assets/splash_screen-portrait.png" alt="Splash Screen" height="400" hspace=10" />
+  <img src="assets/login_screen-portrait.png" alt="Login Screen" height="400" hspace=10" /> 
+  <img src="assets/signIn_screen-portrait.png" alt="SignIn Screen" height="400" hspace=10" />  
   <img src="assets/home_screen-portrait.png" alt="Home Screen" height="400" hspace=10" />
   <img src="assets/details_screen-portrait.png" alt="Details Screen" height="400" hspace=10" />
   <img src="assets/search_screen-portrait.png" alt="Search Screen" height="400" hspace=10" />
