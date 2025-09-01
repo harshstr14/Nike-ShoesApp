@@ -13,38 +13,48 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
     -   Google Sign-in integration using Firebase.
     -   Password recovery via email. ✉️
     -   Persistent login using SharedPreferences and Google Sign-in.
+      
 -   🛍️ **Product Browsing :**
     -   Browse shoes by category (All, Air Jordan 1, Air Force 1, Dunk, Blazer, V2K).
     -   Display of shoe images, names, types, and prices.
     -   Image slider for featured products on the home screen.
+      
 -   👟 **Product Details :**
     -   Detailed view of each shoe, including multiple images, name, type, price, description, and product details.
     -   Selection of shoe size.
+      
 -   🛒 **Shopping Cart :**
     -   Add shoes to cart from the product details page.
     -   View and manage items in the cart, including quantity adjustments.
     -   Real-time updates of subtotal, shopping fee, and total cost.
     -   Delete Items from cart.
+      
 -   💳 **Checkout Process :**
     -   Display subtotal, shipping fee, and total cost.
     -   Address input and storage in Firebase Realtime Database.
     -   Credit card details input and secure storage.
     -   Payment simulation with transaction ID and order ID generation.
     -   Order confirmation notification 🔔.
+      
 -   ❤️ **Favorite Items :**
     -   Add and remove shoes from a favorites list.
     -   Display of favorite items in a grid layout.
+      
 -   📦 **Order History :**
     -   Display a list of past orders with order ID, date, time, and total amount.
     -   Detailed view of each order, including product list and shipping address.
+      
 -   👤 **User Profile :**
     -   View and update profile information, including name, email, and phone number.
     -   Upload and update profile picture using Cloudinary.
+      
 -   🔎 **Search Functionality :**
     -   Search for shoes by name.
+      
 -   🧭 **Navigation :**
     -   Bottom navigation for quick access to Home, Favorites, Cart, Notifications, and Profile.
     -   Navigation drawer for accessing Profile, Home, Cart, Favorites, Orders, Notifications, and Sign Out.
+      
 -   ⚡**Splash Screens :**
     -   Introductory splash screens.
     
