@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.example.nike.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -78,8 +81,25 @@ class SignUp : AppCompatActivity() {
                            Toast.makeText(this, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show()
                        }
                    } else {
-                       Log.e("Auth", "Sign-up failed: ${task.exception?.message}", task.exception)
-                       Toast.makeText(this, "Email is already registered or invalid.", Toast.LENGTH_SHORT).show()
+                       try {
+                           throw task.exception!!
+                       } catch (e: FirebaseAuthUserCollisionException) {
+                           // Email already in use
+                           Toast.makeText(this, "This email is already registered.", Toast.LENGTH_SHORT).show()
+                           Log.e("Auth", "Email : ${e.message}")
+                       } catch (e: FirebaseAuthWeakPasswordException) {
+                           // Weak password
+                           Toast.makeText(this, "Password is too weak. Use at least 6 characters.", Toast.LENGTH_SHORT).show()
+                           Log.e("Auth", "Password : ${e.message}")
+                       } catch (e: FirebaseAuthInvalidCredentialsException) {
+                           // Invalid email format
+                           Toast.makeText(this, "Invalid email format.", Toast.LENGTH_SHORT).show()
+                           Log.e("Auth", "Email Format : ${e.message}")
+                       } catch (e: Exception) {
+                           // Other errors
+                           Toast.makeText(this, "Sign-up failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                           Log.e("Auth", "Other : ${e.message}")
+                       }
                    }
                }.addOnFailureListener { e ->
                    Log.e("Auth", "FirebaseAuth error: ${e.message}", e)

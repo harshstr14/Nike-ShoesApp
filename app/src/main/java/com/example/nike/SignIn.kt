@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.example.nike.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 
 class SignIn : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
@@ -80,8 +82,21 @@ class SignIn : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                Log.e("Auth", "Log-In failed: ${task.exception?.message}", task.exception)
-                Toast.makeText(this, "Email was not registered or invalid.", Toast.LENGTH_SHORT).show()
+                try {
+                    throw task.exception!!
+                } catch (e: FirebaseAuthInvalidUserException) {
+                    // Email not registered
+                    Toast.makeText(this, "This email is not registered.", Toast.LENGTH_SHORT).show()
+                    Log.e("Auth", "Email : ${e.message}")
+                } catch (e: FirebaseAuthInvalidCredentialsException) {
+                    // Wrong password
+                    Toast.makeText(this, "Incorrect password.", Toast.LENGTH_SHORT).show()
+                    Log.e("Auth", "Password : ${e.message}")
+                } catch (e: Exception) {
+                    // Other errors
+                    Toast.makeText(this, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("Auth", "Other : ${e.message}")
+                }
             }
         }.addOnFailureListener { e ->
             Log.e("Auth", "FirebaseAuth error: ${e.message}", e)
