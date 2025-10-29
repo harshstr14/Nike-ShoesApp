@@ -1,14 +1,24 @@
 package com.example.nike
 
+import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updateLayoutParams
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
@@ -40,6 +50,9 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        enableEdgeToEdgeWithInsets(binding.root,binding.main)
+        setStatusBarIconsTheme(this)
 
         profileImageVIew = binding.profileImage
         cameraIcon = binding.imageButton
@@ -148,6 +161,39 @@ class Profile : AppCompatActivity() {
             Log.d("Profile","Name Updated : $name")
         }.addOnFailureListener {
             Log.e("Profile","Failed to update Name")
+        }
+    }
+    private fun enableEdgeToEdgeWithInsets(rootView: View, LayoutView: View) {
+        val activity = rootView.context as ComponentActivity
+        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { _, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            LayoutView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = systemBars.bottom
+            }
+
+            insets
+        }
+    }
+    private fun setStatusBarIconsTheme(activity: Activity) {
+        val window = activity.window
+        val decorView = window.decorView
+        val insetsController = WindowInsetsControllerCompat(window, decorView)
+
+        // Detect current theme
+        val isDarkTheme =
+            (activity.resources.configuration.uiMode
+                    and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        // Set icon color automatically
+        if (isDarkTheme) {
+            // Light icons for dark theme
+            insetsController.isAppearanceLightStatusBars = true
+        } else {
+            // Dark icons for light theme
+            insetsController.isAppearanceLightStatusBars = true
         }
     }
 }

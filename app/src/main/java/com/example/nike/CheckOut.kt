@@ -1,28 +1,36 @@
 package com.example.nike
 
+import android.app.Activity
 import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updateLayoutParams
 import com.example.nike.databinding.ActivityCheckOutBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -60,6 +68,9 @@ class CheckOut : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        enableEdgeToEdgeWithInsets(binding.root,binding.main)
+        setStatusBarIconsTheme(this)
 
         binding.backArrowImage.setOnClickListener {
             val intent = Intent(this, MyCart::class.java)
@@ -292,7 +303,6 @@ class CheckOut : AppCompatActivity() {
             }
         }
     }
-
     private fun setupEditable(row: View, value: String, inputType: Int) {
         val editField = row.findViewById<EditText>(R.id.editField)
         val btnEdit = row.findViewById<ImageView>(R.id.editBtn)
@@ -461,7 +471,7 @@ class CheckOut : AppCompatActivity() {
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(CHANNEL_ID,CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT)
-            val notificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager = this.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
@@ -477,6 +487,39 @@ class CheckOut : AppCompatActivity() {
                 return
             }
             notify(1001,notification.build())
+        }
+    }
+    private fun enableEdgeToEdgeWithInsets(rootView: View, LayoutView: View) {
+        val activity = rootView.context as ComponentActivity
+        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { _, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            LayoutView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = systemBars.bottom
+            }
+
+            insets
+        }
+    }
+    private fun setStatusBarIconsTheme(activity: Activity) {
+        val window = activity.window
+        val decorView = window.decorView
+        val insetsController = WindowInsetsControllerCompat(window, decorView)
+
+        // Detect current theme
+        val isDarkTheme =
+            (activity.resources.configuration.uiMode
+                    and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        // Set icon color automatically
+        if (isDarkTheme) {
+            // Light icons for dark theme
+            insetsController.isAppearanceLightStatusBars = true
+        } else {
+            // Dark icons for light theme
+            insetsController.isAppearanceLightStatusBars = true
         }
     }
 }

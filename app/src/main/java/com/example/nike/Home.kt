@@ -1,12 +1,17 @@
 package com.example.nike
 
+import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -14,6 +19,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.edit
 import androidx.core.view.GravityCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updateLayoutParams
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,6 +61,9 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        enableEdgeToEdgeWithInsets(binding.root,binding.drawerLayout)
+        setStatusBarIconsTheme(this)
 
         googleSignInManager = GoogleSignInManager.getInstance(this)
         googleSignInManager?.setupGoogleSignInOptions()
@@ -288,6 +301,7 @@ class Home : AppCompatActivity() {
         shoesAdapter = ShoesAdapter(this,shoesList)
         binding.recyclerView.adapter = shoesAdapter
         binding.recyclerView.layoutManager = GridLayoutManager(this,2)
+        binding.recyclerView.isNestedScrollingEnabled = false
         loadShoesData(category)
 
         shoesAdapter.setOnItemClickListener(object : ShoesAdapter.OnItemClickListener {
@@ -368,7 +382,7 @@ class Home : AppCompatActivity() {
         super.onResume()
         selectNavItem(R.id.bottom_nav_home)
     }
-    fun selectNavItem(selectedId: Int) {
+    private fun selectNavItem(selectedId: Int) {
         val animation = AnimationUtils.loadAnimation(this@Home,R.anim.bounce_up)
         val navItem = listOf(R.id.bottom_nav_home,R.id.bottom_nav_fav,R.id.bottom_nav_cart,
             R.id.bottom_nav_notification,R.id.bottom_nav_user)
@@ -378,6 +392,39 @@ class Home : AppCompatActivity() {
             if (id == selectedId) {
                 item.startAnimation(animation)
             }
+        }
+    }
+    private fun enableEdgeToEdgeWithInsets(rootView: View, LayoutView: View) {
+        val activity = rootView.context as ComponentActivity
+        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { _, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            LayoutView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = systemBars.bottom
+            }
+
+            insets
+        }
+    }
+    private fun setStatusBarIconsTheme(activity: Activity) {
+        val window = activity.window
+        val decorView = window.decorView
+        val insetsController = WindowInsetsControllerCompat(window, decorView)
+
+        // Detect current theme
+        val isDarkTheme =
+            (activity.resources.configuration.uiMode
+                    and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        // Set icon color automatically
+        if (isDarkTheme) {
+            // Light icons for dark theme
+            insetsController.isAppearanceLightStatusBars = false
+        } else {
+            // Dark icons for light theme
+            insetsController.isAppearanceLightStatusBars = false
         }
     }
 }
