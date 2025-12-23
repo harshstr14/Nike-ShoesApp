@@ -160,14 +160,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="20dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/shoeNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:paddingHorizontal="20dp"
                 android:fontFamily="@font/merriweathersans_semibold"
                 android:text="Nike Dunk Low"
                 android:textColor="#1A2530"
@@ -179,6 +179,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/merriweathersans_regular"
                 android:text="Retro"
+                android:paddingHorizontal="20dp"
                 android:textColor="#707B81"
                 android:textSize="15.5sp"
                 android:layout_marginTop="1.5dp" />
@@ -188,6 +189,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:clipToPadding="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="0dp"
                 android:layout_marginVertical="5dp"
                 tools:listitem="@layout/item_shoe_image" />
 
@@ -195,6 +198,7 @@
                 android:id="@+id/shoeDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
                 android:fontFamily="@font/merriweathersans_regular"
                 android:text="Created for the hardwood but taken to the streets, the Nike Dunk Low Retro returns with crisp overlays and original team colours. This basketball icon channels '80s vibes with premium leather in the upper that looks good and breaks in even better. Modern footwear technology helps bring the comfort into the 21st century."
                 android:textColor="#707B81"
@@ -206,6 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="3dp"
+                android:paddingHorizontal="20dp"
                 android:fontFamily="@font/merriweathersans_semibold"
                 android:text="Product Details"
                 android:textColor="#1A2530"
@@ -215,6 +220,7 @@
             <TextView
                 android:id="@+id/productDetail"
                 android:layout_width="match_parent"
+                android:paddingHorizontal="20dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/merriweathersans_regular"
                 android:text="Low-cut collar\nFoam insole\nPerforations on the toe\nColour Shown: White/White/Black\nStyle: DD1391-100\nCountry/Region of Origin: China, Indonesia, Vietnam"
@@ -231,7 +237,7 @@
         android:background="@drawable/bottam_bg"
         android:gravity="center_vertical"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="22dp"
+        android:paddingVertical="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

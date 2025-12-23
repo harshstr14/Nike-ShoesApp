@@ -1,5 +1,5 @@
 [versions]
-agp = "8.13.0"
+agp = "8.13.2"
 circleimageview = "3.1.0"
 cloudinaryAndroid = "3.1.2"
 imageslideshow = "0.1.2"

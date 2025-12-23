@@ -3,12 +3,12 @@ package com.example.nike
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
@@ -37,7 +37,19 @@ class SignUp : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        enableEdgeToEdgeWithInsets(binding.root,binding.main)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isNavigationBarContrastEnforced = false
+        }
+
+        WindowInsetsControllerCompat(
+            window,
+            window.decorView
+        ).isAppearanceLightNavigationBars = false
+
+        handleBottomNavPosition()
+
         setStatusBarIconsTheme(this)
 
         googleSignInManager = GoogleSignInManager.getInstance(this)
@@ -136,15 +148,25 @@ class SignUp : AppCompatActivity() {
             googleSignInManager?.handleSignInResult(data)
         }
     }
-    private fun enableEdgeToEdgeWithInsets(rootView: View, LayoutView: View) {
-        val activity = rootView.context as ComponentActivity
-        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+    private fun Int.dpToPx(view: View): Int =
+        (this * view.resources.displayMetrics.density).toInt()
+    private fun handleBottomNavPosition() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
 
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { _, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
 
-            LayoutView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                bottomMargin = systemBars.bottom
+            // Typical values:
+            // Gesture: 16–24dp
+            // 3-button: 48–80dp
+
+            val threshold = 40.dpToPx(binding.root)
+
+            binding.main.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = if (navBarHeight > threshold) {
+                    navBarHeight   // 3-button → move up
+                } else {
+                    0              // Gesture → stay at bottom
+                }
             }
 
             insets

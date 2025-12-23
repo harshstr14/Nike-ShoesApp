@@ -4,13 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -51,7 +51,19 @@ class Profile : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        enableEdgeToEdgeWithInsets(binding.root,binding.main)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isNavigationBarContrastEnforced = false
+        }
+
+        WindowInsetsControllerCompat(
+            window,
+            window.decorView
+        ).isAppearanceLightNavigationBars = false
+
+        handleBottomNavPosition()
+
         setStatusBarIconsTheme(this)
 
         profileImageVIew = binding.profileImage
@@ -126,52 +138,80 @@ class Profile : AppCompatActivity() {
         }
     }
     private fun updateDetails() {
-        val userID = auth.currentUser?.uid
-        val userEmail = auth.currentUser?.email
+        val user = auth.currentUser ?: return
 
-        database = FirebaseDatabase.getInstance().getReference().child("Users").child(userID!!).child("Address")
-        database.get().addOnSuccessListener {
-            val phoneNo = it.child("phone no").value.toString()
-            binding.phoneEditText.setText(phoneNo)
-        }
+        val userId = user.uid
+        val userEmail = user.email.orEmpty()
 
-        val nameReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID)
-        nameReference.get().addOnSuccessListener {
-            val userName = it.child("name").value.toString()
+        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+
+        userRef.get().addOnSuccessListener { snapshot ->
+
+            val userName = snapshot.child("name").getValue(String::class.java).orEmpty()
+
             binding.nameEditText.setText(userName)
             binding.textView18.text = userName
+
+            val phoneNo = snapshot
+                .child("Address")
+                .child("phone no")
+                .getValue(String::class.java)
+                .orEmpty()
+
+            binding.phoneEditText.setText(phoneNo)
+        }.addOnFailureListener { e ->
+                Log.e("Firebase", "Failed to load user data", e)
         }
 
         binding.emailEditText.setText(userEmail)
     }
     private fun updateProfile() {
-        val userID = auth.currentUser?.uid
+        val user = auth.currentUser ?: return
+
+        val userId = user.uid
         val name = binding.nameEditText.text.toString().trim()
         val phoneNo = binding.phoneEditText.text.toString().trim()
 
-        database = FirebaseDatabase.getInstance().getReference().child("Users").child(userID!!).child("Address")
-        database.child("phone no").setValue(phoneNo).addOnSuccessListener {
-            Log.d("Profile","Phone No Updated : $phoneNo")
-        }.addOnFailureListener {
-            Log.e("Profile","Failed to update Phone No")
+        if (name.isEmpty() || phoneNo.isEmpty()) {
+            Toast.makeText(this,"Name or Phone is empty", Toast.LENGTH_SHORT).show()
+            Log.e("Profile", "Name or Phone is empty")
+            return
         }
 
-        val nameReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID)
-        nameReference.child("name").setValue(name).addOnSuccessListener {
-            Log.d("Profile","Name Updated : $name")
-        }.addOnFailureListener {
-            Log.e("Profile","Failed to update Name")
+        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+
+        val updates = hashMapOf<String, Any>(
+            "name" to name,
+            "phone no" to phoneNo
+        )
+
+        userRef.updateChildren(updates).addOnSuccessListener {
+            Toast.makeText(this,"Profile updated successfully", Toast.LENGTH_SHORT).show()
+            Log.d("Profile", "Profile updated successfully")
+        }.addOnFailureListener { e ->
+            Toast.makeText(this,"Failed to update profile", Toast.LENGTH_SHORT).show()
+            Log.e("Profile", "Failed to update profile", e)
         }
     }
-    private fun enableEdgeToEdgeWithInsets(rootView: View, LayoutView: View) {
-        val activity = rootView.context as ComponentActivity
-        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+    private fun Int.dpToPx(view: View): Int =
+        (this * view.resources.displayMetrics.density).toInt()
+    private fun handleBottomNavPosition() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
 
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { _, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
 
-            LayoutView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                bottomMargin = systemBars.bottom
+            // Typical values:
+            // Gesture: 16–24dp
+            // 3-button: 48–80dp
+
+            val threshold = 40.dpToPx(binding.root)
+
+            binding.main.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = if (navBarHeight > threshold) {
+                    navBarHeight   // 3-button → move up
+                } else {
+                    0              // Gesture → stay at bottom
+                }
             }
 
             insets
