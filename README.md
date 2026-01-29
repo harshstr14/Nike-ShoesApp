@@ -1,12 +1,12 @@
 ![Screens](./assets/Rounded_20260127_221503.png)
-# 👟 Nike - ShoesApp 
+# 👟 𝗡𝗶𝗸𝗲 - 𝗦𝗵𝗼𝗲𝘀𝗔𝗽𝗽 
 An Android application for browsing Nike shoes.
 
-## 📖 Description
+## 📖 𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻
 
 This Android application allows users to browse a catalog of Nike shoes, add items to a cart 🛒, manage their favorite items ❤️, place orders 📦, and manage their profile 👤. The app integrates with Firebase  🔥 for user authentication, real-time database storage, and image management. The application uses the Cloudinary ☁️ service to upload and manage user profile pictures.
 
-## ✨ Features and Functionality
+## ✨ 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗮𝗻𝗱 𝗙𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝗮𝗹𝗶𝘁𝘆
 
 -   🔐 **User Authentication :**
     -   Sign-up and Sign-in with Email/Password using Firebase Authentication.
@@ -58,11 +58,11 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
 -   ⚡**Splash Screens :**
     -   Introductory splash screens.
  
-## 📸 Screenshots
+## 📸 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁𝘀
 
 ![Screens](./assets/Rounded_20260127_221519.png)
     
-## 🛠️ Technology Stack
+## 🛠️ 𝗧𝗲𝗰𝗵𝗻𝗼𝗹𝗼𝗴𝘆 𝗦𝘁𝗮𝗰𝗸
 
 -   💻 **Kotlin :** Primary programming language.
 -   📱 **Android SDK :** For building the Android application.
@@ -79,13 +79,13 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
     -   🌌 EdgeToEdge : For immersive experiences with edge-to-edge content.
 -   🛠️ **Gradle :** For dependency management and building the application.
 
-## 📋 Prerequisites
+## 📋 𝗣𝗿𝗲𝗿𝗲𝗾𝘂𝗶𝘀𝗶𝘁𝗲𝘀
 
 -   Android Studio 💻 installed on your development machine.
 -   A Firebase🔥project with Realtime Database enabled.
 -   A Cloudinary ☁️ account for image storage.
 
-## 🚀 Installation Instructions
+## 🚀 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀
 
 1.  **Clone the repository :**
 
@@ -155,7 +155,7 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
     *   Connect an Android device or start an emulator.
     *   Click on "Run" in Android Studio to build and run the application on your device/emulator.
 
-## 📖 Usage Guide
+## 📖 𝗨𝘀𝗮𝗴𝗲 𝗚𝘂𝗶𝗱𝗲
 
 1.  👋 **Launch the application.**
 
@@ -204,7 +204,7 @@ This Android application allows users to browse a catalog of Nike shoes, add ite
 
     *   Click on the "Sign Out" item in the navigation drawer to sign out of the application.
 
-## 📚 API Documentation
+## 📚 𝗔𝗣𝗜 𝗗𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻
 
 This project uses Firebase🔥Realtime Database. Refer to the official Firebase documentation for API details:
 
@@ -214,7 +214,7 @@ This project uses Cloudinary ☁️ service. Refer to the official Cloudinary do
 
 -   [Cloudinary](https://cloudinary.com/documentation)
 
-## 🤝 Contributing Guidelines
+## 🤝 𝗖𝗼𝗻𝘁𝗿𝗶𝗯𝘂𝘁𝗶𝗻𝗴 𝗚𝘂𝗶𝗱𝗲𝗹𝗶𝗻𝗲𝘀
 
 Contributions are welcome! To contribute to this project, follow these steps:
 
@@ -224,10 +224,10 @@ Contributions are welcome! To contribute to this project, follow these steps:
 4.  Test your changes thoroughly ✅.
 5.  Submit a pull request to the `master` branch 🔄.
 
-## 📜 License Information
+## 📜 𝗟𝗶𝗰𝗲𝗻𝘀𝗲 𝗜𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻
 
 No license specified. All rights reserved.
 
-## 📬 Contact/Support Information
+## 📬 𝗖𝗼𝗻𝘁𝗮𝗰𝘁/𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗜𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻
 
 For questions or support, please contact: harshstr14@gmail.com
